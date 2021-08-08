@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <_name>Export GeoJSON</_name>
+    <id>com.mtirado.filter.ExportGeoJSON</id>
+	<dependency type="executable" location="extensions">exportgeojson.py</dependency>
+	<dependency type="executable" location="extensions">projection.py</dependency>
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+    <effect needs-live-preview="false">
+		<object-type>all</object-type>
+		<effects-menu>
+			<submenu _name="Export"/>
+		</effects-menu>
+	</effect>
+
+	<param name="projection" type="optiongroup" _gui-text="Projection:" appearance="combo">
+		<option value="Mercator">Mercator</option>
+		<option value="Equirectangular">Equirectangular</option>
+		<option value="Azimuthal Equidistant">Azimuthal Equidistant</option>
+	</param>
+	<label>Projection Center</label>
+	<param name="latitude" type="float" min="-90" max="90" precision="3" gui-text="Latitude (degrees)">0</param>
+	<param name="longitude" type="float" min="-180" max="180" precision="3" gui-text="Longitude (degrees)">0</param>
+	<param name="outputfile" type="string" gui-text="Output File"></param>
+	<param name="overwrite" type="bool" gui-text="Overwrite File">true</param>
+	<script>
+		<command reldir="extensions" interpreter="python">GeoJSONExportExtension.py</command>
+	</script>
+</inkscape-extension>

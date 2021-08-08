@@ -5,7 +5,7 @@ class Projection:
     def __init__(self, width=0, height=0):
         self.width = width;
         self.height = height;
-        self.precision = 2
+        self.precision = 3
         self.centerLatitude = 0
         self.centerLongitude = 0
         self.centerX = width / 2
@@ -35,7 +35,7 @@ class Mercator(Projection):
     def toSphere(self, x, y):
         x =  x - self.centerX
         y = -y + self.centerY
-        lon = (x / self.centerX) * 180
+        lon = 180 * x / self.centerX + self.centerLongitude
         radius = self.width / (2 * math.pi)
         lat = math.degrees(2 * math.atan(math.exp(y / radius)) - math.pi/2)
         return self.formatGeoJSON(lat, lon)
@@ -44,7 +44,7 @@ class Equirectangular(Projection):
     def toSphere(self, x, y):
         x =  x - self.centerX
         y = -y + self.centerY
-        lon = 180 * x / self.centerX
+        lon = 180 * x / self.centerX + self.centerLongitude
         lat =  90 * y / self.centerY
         return self.formatGeoJSON(lat, lon)
 
@@ -68,3 +68,8 @@ class AzimuthalEquidistant(Projection):
 
         return self.formatGeoJSON(math.degrees(latitude), math.degrees(longitude))
 
+projectionList =  {
+    'Mercator': Mercator(),
+    'Equirectangular': Equirectangular(),
+    'Azimuthal Equidistant': AzimuthalEquidistant()
+}

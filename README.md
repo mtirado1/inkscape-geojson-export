@@ -60,8 +60,10 @@ geojson data and inkscape files.
 pip install geojson inkex
 ```
 
+To install the extension, move the files inside `extension/`
+to the `inkscape/extensions/` folder.
+
 # TODO
 
-- Inkscape extension
 - GeoJSON import
 
