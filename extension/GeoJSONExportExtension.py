@@ -1,4 +1,5 @@
 import inkex
+import json
 from exportgeojson import *
 from projection import projectionList
 
