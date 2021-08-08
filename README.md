@@ -62,4 +62,6 @@ pip install geojson inkex
 
 # TODO
 
+- Inkscape extension
 - GeoJSON import
+
